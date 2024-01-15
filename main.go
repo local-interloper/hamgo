@@ -1,10 +1,10 @@
 package main
 
 import (
-	"hamgo/lib/parser"
+	"hamgo/lib/argparser"
 	"os"
 )
 
 func main() {
-	parser.Handle(os.Args)
+	argparser.Handle(os.Args)
 }

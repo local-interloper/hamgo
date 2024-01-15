@@ -46,3 +46,13 @@ func Prompt(prompt string) string {
 	fmt.Print(prompt + ": ")
 	return GetLine()
 }
+
+func PromptDefault(prompt string, def string) string {
+	input := Prompt(fmt.Sprintf("%s [%s]", prompt, def))
+
+	if len(input) == 0 {
+		input = def
+	}
+
+	return input
+}

@@ -5,7 +5,6 @@ import (
 	"hamgo/lib/types"
 	"hamgo/lib/util"
 	"os"
-	"time"
 )
 
 func BeginSession(args []string) {
@@ -21,24 +20,11 @@ func BeginSession(args []string) {
 
 func mainLoop(file *os.File) {
 	writer := bufio.NewWriter(file)
+	session := types.NewSessionFromPrompt()
 
 	for {
-		qso := RecordInput()
+		qso := types.NewQSOFromPrompt(&session)
 		qso.Write(writer)
-	}
-}
-
-func RecordInput() types.QSO {
-	now := time.Now()
-	return types.QSO{
-		Date:        now.Format("YYYYMMDD"),
-		Time:        now.Format("HHmm"),
-		Freq:        util.Prompt("Frequency"),
-		Mode:        util.Prompt("Mode"),
-		Call:        util.Prompt("Call"),
-		RstSent:     util.Prompt("RST Sent"),
-		RstReceived: util.Prompt("RST Received"),
-		Comment:     util.Prompt("Comment"),
 	}
 }
 
