@@ -2,9 +2,10 @@ package logger
 
 import (
 	"bufio"
-	"hamgo/types"
-	"hamgo/util"
+	"hamgo/lib/types"
+	"hamgo/lib/util"
 	"os"
+	"time"
 )
 
 func BeginSession(args []string) {
@@ -28,9 +29,10 @@ func mainLoop(file *os.File) {
 }
 
 func RecordInput() types.QSO {
+	now := time.Now()
 	return types.QSO{
-		Date:        util.Prompt("Date"),
-		Time:        util.Prompt("Time"),
+		Date:        now.Format("YYYYMMDD"),
+		Time:        now.Format("HHmm"),
 		Freq:        util.Prompt("Frequency"),
 		Mode:        util.Prompt("Mode"),
 		Call:        util.Prompt("Call"),
@@ -41,7 +43,7 @@ func RecordInput() types.QSO {
 }
 
 func openOrCreateFile(path string) *os.File {
-	if fp, err := os.Open(path); err == nil {
+	if fp, err := os.OpenFile(path, os.O_WRONLY|os.O_APPEND, 0644); err == nil {
 		return fp
 	}
 

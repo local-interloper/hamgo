@@ -38,7 +38,7 @@ func GetLine() string {
 			continue
 		}
 
-		return strings.TrimSuffix(text, "\n")
+		return strings.TrimSpace(text)
 	}
 }
 

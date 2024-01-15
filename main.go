@@ -1,7 +1,7 @@
 package main
 
 import (
-	"hamgo/parser"
+	"hamgo/lib/parser"
 	"os"
 )
 

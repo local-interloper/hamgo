@@ -2,7 +2,7 @@ package parser
 
 import (
 	"fmt"
-	"hamgo/logger"
+	"hamgo/lib/logger"
 )
 
 type Handler func(args []string)

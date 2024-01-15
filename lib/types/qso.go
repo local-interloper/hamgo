@@ -2,7 +2,7 @@ package types
 
 import (
 	"bufio"
-	"hamgo/util"
+	"hamgo/lib/util"
 	"strings"
 )
 
