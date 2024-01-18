@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	argparser.Handle(os.Args)
+	argparser.ParseArgs(os.Args)
 }

@@ -13,10 +13,10 @@ type Command struct {
 	usage       string
 }
 
-var Handlers map[string]Command
+var Commands map[string]Command
 
 func init() {
-	Handlers = map[string]Command{
+	Commands = map[string]Command{
 		"help": {
 			PrintHelp,
 			"Show usage and help",
@@ -25,12 +25,12 @@ func init() {
 		"start": {
 			logger.BeginSession,
 			"Prints passed args",
-			"hamgo <PATH>",
+			"hamgo start <PATH>",
 		},
 	}
 }
 
-func Handle(args []string) {
+func ParseArgs(args []string) {
 	if len(args) == 1 {
 		PrintHelp(make([]string, 0))
 		return
@@ -38,7 +38,7 @@ func Handle(args []string) {
 
 	first := args[1]
 
-	command, ok := Handlers[first]
+	command, ok := Commands[first]
 
 	if !ok {
 		fmt.Println("Invalid command")
